@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Move : MonoBehaviour
 {
@@ -7,13 +8,15 @@ public class Move : MonoBehaviour
     [SerializeField] private float rotSpeed = 2f;
     [SerializeField] private float jumpForce = 10f;
 
-    private Rigidbody rigidbody;
+    private Rigidbody rb;
     private Vector3 goal;
     private bool jumped = false;
 
+    private Vector3 scaleVector = new Vector3(1.5f, 1.5f, 1.5f);
+
     private void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         goal = transform.position;
     }
 
@@ -43,9 +46,20 @@ public class Move : MonoBehaviour
         {
             if(!jumped)
             {
-                rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                StartCoroutine(WaitToScale());
                 jumped = true;
             }
         }
+
+
+    }
+
+    IEnumerator WaitToScale()
+    {
+        yield return new WaitForSeconds(0.5f);
+        transform.localScale = Vector3.Scale(transform.localScale, scaleVector);
+        yield return new WaitForSeconds(0.5f);
+        transform.localScale = Vector3.one;
     }
 }
