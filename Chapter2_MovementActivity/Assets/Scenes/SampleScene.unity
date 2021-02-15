@@ -157,7 +157,7 @@ MonoBehaviour:
   speed: 1
   accuracy: 0.5
   rotSpeed: 2
-  jumpForce: 10
+  jumpForce: 9
 --- !u!65 &192577865
 BoxCollider:
   m_ObjectHideFlags: 0
