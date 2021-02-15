@@ -2,6 +2,15 @@
 
 public class Move : MonoBehaviour
 {
+    Vector3 goal;
+    float speed = 1.0f;
+    float accuracy = 1.0f;
+
+    private void Start()
+    {
+        goal = this.transform.position;
+    }
+
     private void Update()
     {
         RaycastHit hit;
@@ -9,10 +18,15 @@ public class Move : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit) && Input.GetMouseButtonDown(0))
         {
-            Vector3 newPosition = new Vector3(hit.point.x, this.transform.position.y, hit.point.z);
-            this.transform.position = newPosition;
+            goal = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+            transform.LookAt(goal);
 
-            Debug.Log("Current position vector: " + newPosition.ToString());
+            if(Vector3.Distance(transform.position, goal) > accuracy)
+            {
+                transform.Translate(0, 0, speed * Time.deltaTime);
+            }
+
+            Debug.Log("Current position vector: " + goal.ToString());
         }
     }
 }
