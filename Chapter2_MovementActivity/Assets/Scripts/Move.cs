@@ -8,14 +8,16 @@ public class Move : MonoBehaviour
     [SerializeField] private float rotSpeed = 2f;
     [SerializeField] private float jumpForce = 10f;
 
+    private MeshRenderer meshRenderer;
     private Rigidbody rb;
     private Vector3 goal;
     private bool jumped = false;
 
-    private Vector3 scaleVector = new Vector3(1.5f, 1.5f, 1.5f);
+    private Vector3 scaleVector = new Vector3(1.5f, 1.5f, 1.5f); //scale vector to increase scale by 50%
 
     private void Start()
     {
+        meshRenderer = GetComponent<MeshRenderer>();
         rb = GetComponent<Rigidbody>();
         goal = transform.position;
     }
@@ -27,9 +29,8 @@ public class Move : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit) && Input.GetMouseButtonDown(0))
         {
-            jumped = false;
+            jumped = false; //when setting new goal, set jump back to false
             goal = new Vector3(hit.point.x, transform.position.y, hit.point.z);
-            //Debug.Log("Current position vector: " + goal.ToString());
         }
 
         Vector3 direction = goal - transform.position;
@@ -44,22 +45,23 @@ public class Move : MonoBehaviour
         }
         else
         {
-            if(!jumped)
+            if(!jumped) //if not jumped, jump, rotate, and start coroutune
             {
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                StartCoroutine(WaitToScale());
+                StartCoroutine(ScaleAndColor());
                 jumped = true;
             }
         }
-
-
     }
 
-    IEnumerator WaitToScale()
+    IEnumerator ScaleAndColor() //change cube color and scale
     {
         yield return new WaitForSeconds(0.5f);
         transform.localScale = Vector3.Scale(transform.localScale, scaleVector);
+        meshRenderer.material.color = new Color(255, 0, 0);
         yield return new WaitForSeconds(0.5f);
         transform.localScale = Vector3.one;
+        meshRenderer.material.color = new Color(0,0,0);
+
     }
 }
