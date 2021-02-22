@@ -115,11 +115,66 @@ public class GridWP : MonoBehaviour
         startNode = grid[0, 0];
         endNode = grid[6, 5];
         startNode.Walkable = true;
+        endNode.Walkable = true;
         endNode.Waypoint.GetComponent<Renderer>().material = goalMaterial;
 
         transform.position = new Vector3(startNode.Waypoint.transform.position.x,
             transform.position.y,
             startNode.Waypoint.transform.position.z);
+    }
+
+    List<Node> BFS(Node start, Node end)
+    {
+        Queue<Node> toVisit = new Queue<Node>();
+        List<Node> visited = new List<Node>();
+
+        Node curNode = start;
+        curNode.Depth = 0;
+        toVisit.Enqueue(curNode);
+
+        List<Node> finalPath = new List<Node>();
+
+        while (toVisit.Count > 0)
+        {
+            curNode = toVisit.Dequeue();
+
+            if (visited.Contains(curNode))
+                continue;
+
+            visited.Add(curNode);
+
+            if (curNode.Equals(end))
+            {
+                while(curNode.Depth != 0)
+                {
+                    foreach(Node n in curNode.Neighbors)
+                    {
+                        if(n.Depth == curNode.Depth - 1)
+                        {
+                            finalPath.Add(curNode);
+                            curNode = n;
+                            break;
+                        }
+                    }
+                }
+                finalPath.Reverse();
+                break;
+            }
+            else
+            {
+                foreach(Node n in curNode.Neighbors)
+                {
+                    if(!visited.Contains(n) && n.Walkable)
+                    {
+                        n.Depth = curNode.Depth + 1;
+                        toVisit.Enqueue(n);
+                    }
+                }
+            }
+        }
+
+        return finalPath;
+
     }
 
     List<Node> getAdjacentNode(Node[,] m, int i, int j)
@@ -178,8 +233,8 @@ public class GridWP : MonoBehaviour
                 startNode.Waypoint.transform.position.z);
 
             currentNode = 0;
-            path.Add(grid[0, 1]);
-            path.Add(endNode);
+
+            path = BFS(startNode, endNode);
         }
 
         //if there is no path do nothing
@@ -234,16 +289,17 @@ public class GridWP : MonoBehaviour
             this.walkable = walkable;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(System.Object obj)
         {
             if (obj == null) return false;
 
             Node n = obj as Node;
 
-            if (n == null) return false;
+            if ((System.Object)n == null) 
+                return false;
 
-            if (this.waypoint.transform.position.x == waypoint.transform.position.x
-                && this.waypoint.transform.position.z == waypoint.transform.position.z)
+            if (waypoint.transform.position.x == n.Waypoint.transform.position.x
+                && waypoint.transform.position.z == n.Waypoint.transform.position.z)
                 return true;
 
             return false;
