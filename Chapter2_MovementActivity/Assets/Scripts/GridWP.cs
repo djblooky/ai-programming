@@ -27,15 +27,6 @@ public class GridWP : MonoBehaviour
             {
             new Node(),
             new Node(),
-            new Node(false),
-            new Node(),
-            new Node(),
-            new Node(),
-            },
-
-            { 
-            new Node(false),
-            new Node(),
             new Node(),
             new Node(),
             new Node(),
@@ -46,31 +37,13 @@ public class GridWP : MonoBehaviour
             new Node(),
             new Node(),
             new Node(),
-            new Node(false),
-            new Node(),
-            new Node(),
-            },
-
-            {
-            new Node(),
-            new Node(false),
-            new Node(),
             new Node(),
             new Node(),
             new Node(),
             },
 
-            {
+            { 
             new Node(),
-            new Node(),
-            new Node(),
-            new Node(false),
-            new Node(),
-            new Node(),
-            },
-
-            {
-            new Node(false),
             new Node(),
             new Node(),
             new Node(),
@@ -81,10 +54,37 @@ public class GridWP : MonoBehaviour
             {
             new Node(),
             new Node(),
+            new Node(false),
+            new Node(),
+            new Node(),
+            new Node(),
+            },
+
+            {
+            new Node(false),
+            new Node(),
+            new Node(),
+            new Node(),
+            new Node(),
+            new Node(),
+            },
+
+            {
+            new Node(),
+            new Node(),
+            new Node(false),
+            new Node(false),
+            new Node(),
+            new Node(),
+            },
+
+            {
+            new Node(),
             new Node(),
             new Node(),
             new Node(),
             new Node(false),
+            new Node(),
             },
 
         };
@@ -114,7 +114,7 @@ public class GridWP : MonoBehaviour
 
         startNode = grid[0, 0];
         endNode = grid[6, 5];
-        startNode.Walkable = true;
+        //startNode.Walkable = true;
         endNode.Walkable = true;
         endNode.Waypoint.GetComponent<Renderer>().material = goalMaterial;
 
@@ -142,6 +142,7 @@ public class GridWP : MonoBehaviour
                 continue;
 
             visited.Add(curNode);
+           // Debug.Log("Visited count " + visited.Count);
 
             if (curNode.Equals(end))
             {
@@ -155,6 +156,7 @@ public class GridWP : MonoBehaviour
                             curNode = n;
                             break;
                         }
+                        Debug.Log("Finalpath count: " + finalPath.Count);
                     }
                 }
                 finalPath.Reverse();
@@ -174,6 +176,49 @@ public class GridWP : MonoBehaviour
         }
 
         return finalPath;
+
+    }
+
+    public class Node
+    {
+        private int depth;
+        private bool walkable;
+
+        private GameObject waypoint = new GameObject();
+        private List<Node> neighbors = new List<Node>();
+
+        public int Depth { get => depth; set => depth = value; }
+        public bool Walkable { get => walkable; set => walkable = value; }
+        public GameObject Waypoint { get => waypoint; set => waypoint = value; }
+        public List<Node> Neighbors { get => neighbors; set => neighbors = value; }
+
+        public Node()
+        {
+            depth = -1;
+            walkable = true;
+        }
+
+        public Node(bool walkable)
+        {
+            depth = -1;
+            this.walkable = walkable;
+        }
+
+        public override bool Equals(System.Object obj)
+        {
+            if (obj == null) return false;
+
+            Node n = obj as Node;
+
+            if ((System.Object)n == null)
+                return false;
+
+            if (this.waypoint.transform.position.x == n.Waypoint.transform.position.x
+                && this.waypoint.transform.position.z == n.Waypoint.transform.position.z)
+                return true;
+
+            return false;
+        }
 
     }
 
@@ -245,6 +290,8 @@ public class GridWP : MonoBehaviour
             transform.position.y,
             path[currentNode].Waypoint.transform.position.z);
 
+        Debug.Log("Goal: " + goal.ToString());
+
         Vector3 direction = goal - transform.position;
 
         //move toward goal
@@ -264,46 +311,5 @@ public class GridWP : MonoBehaviour
         }
     }
 
-    public class Node
-    {
-        private int depth;
-        private bool walkable;
-
-        private GameObject waypoint = new GameObject();
-        private List<Node> neighbors = new List<Node>();
-
-        public int Depth { get => depth; set => depth = value; }
-        public bool Walkable { get => walkable; set => walkable = value; }
-        public GameObject Waypoint { get => waypoint; set => waypoint = value; }
-        public List<Node> Neighbors { get => neighbors; set => neighbors = value; }
-
-        public Node()
-        {
-            depth = -1;
-            walkable = true;
-        }
-
-        public Node(bool walkable)
-        {
-            depth = -1;
-            this.walkable = walkable;
-        }
-
-        public override bool Equals(System.Object obj)
-        {
-            if (obj == null) return false;
-
-            Node n = obj as Node;
-
-            if ((System.Object)n == null) 
-                return false;
-
-            if (waypoint.transform.position.x == n.Waypoint.transform.position.x
-                && waypoint.transform.position.z == n.Waypoint.transform.position.z)
-                return true;
-
-            return false;
-        }
-
-    }
+   
 }
