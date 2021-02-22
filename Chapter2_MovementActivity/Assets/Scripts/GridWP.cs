@@ -168,6 +168,47 @@ public class GridWP : MonoBehaviour
         return l;
     }
 
+    private void LateUpdate()
+    {
+        //calculate the shortest path when the return key is pressed
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            transform.position = new Vector3(startNode.Waypoint.transform.position.x,
+                transform.position.y,
+                startNode.Waypoint.transform.position.z);
+
+            currentNode = 0;
+            path.Add(grid[0, 1]);
+            path.Add(endNode);
+        }
+
+        //if there is no path do nothing
+        if (path.Count == 0) return;
+
+        //set goal position
+        goal = new Vector3(path[currentNode].Waypoint.transform.position.x,
+            transform.position.y,
+            path[currentNode].Waypoint.transform.position.z);
+
+        Vector3 direction = goal - transform.position;
+
+        //move toward goal
+        if(direction.magnitude > accuracy)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation,
+                Quaternion.LookRotation(direction),
+                Time.deltaTime * rotationSpeed);
+            transform.Translate(0, 0, speed * Time.deltaTime);
+        }
+        else
+        {
+            if(currentNode < path.Count - 1)
+            {
+                currentNode++;
+            }
+        }
+    }
+
     public class Node
     {
         private int depth;
