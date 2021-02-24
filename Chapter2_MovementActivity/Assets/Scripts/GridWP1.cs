@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class GridWP : MonoBehaviour
+public class GridWP1 : MonoBehaviour
 {
     public Node[,] grid;
     private List<Node> path = new List<Node>();
@@ -112,7 +112,7 @@ public class GridWP : MonoBehaviour
             }
         }
 
-        startNode = grid[0, 0];
+        startNode = grid[6, 1];
         endNode = grid[6, 5];
         //startNode.Walkable = true;
         endNode.Walkable = true;
