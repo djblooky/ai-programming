@@ -11,9 +11,9 @@ public class GridWP1 : MonoBehaviour
     public Material goalMaterial, wallMaterial;
     private Vector3 goal;
 
-    private float speed = 4f;
+    private float speed = 8f;
     private float accuracy = 0.5f;
-    private float rotationSpeed = 4f;
+    private float rotationSpeed = 10f;
     private int spacing = 5;
 
     private Node startNode, endNode;
@@ -87,6 +87,15 @@ public class GridWP1 : MonoBehaviour
             new Node(), //dont put here
             },
 
+             {
+            new Node(false),
+            new Node(),
+            new Node(false),
+            new Node(false),
+            new Node(false),
+            new Node(), 
+            },
+
         };
 
         //initialize grid points
@@ -112,8 +121,8 @@ public class GridWP1 : MonoBehaviour
             }
         }
 
-        startNode = grid[6, 1];
-        endNode = grid[6, 5];
+        startNode = grid[7, 1];
+        endNode = grid[7, 5];
         //startNode.Walkable = true;
         endNode.Walkable = true;
         endNode.Waypoint.GetComponent<Renderer>().material = goalMaterial;

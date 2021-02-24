@@ -299,6 +299,8 @@ public class GridWP : MonoBehaviour
                 Quaternion.LookRotation(direction),
                 Time.deltaTime * rotationSpeed);
             transform.Translate(0, 0, speed * Time.deltaTime);
+
+            transform.localScale = Vector3.Lerp(transform.localScale, transform.localScale * 1.02f, speed * Time.deltaTime);
         }
         else
         {
