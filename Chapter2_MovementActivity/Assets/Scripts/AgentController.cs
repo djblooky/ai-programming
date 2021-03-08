@@ -3,8 +3,7 @@ using UnityEngine.AI;
 
 public class AgentController : MonoBehaviour
 {
-
-
+    public GameObject child;
 
     private void Update()
     {
@@ -16,6 +15,14 @@ public class AgentController : MonoBehaviour
             {
                 this.GetComponent<NavMeshAgent>().SetDestination(hit.point);
             }
+
+            
         }
+
+        if (!(Vector3.Distance(transform.position, child.transform.position) < 1))
+        {
+            child.GetComponent<NavMeshAgent>().SetDestination(transform.position);
+        }
+        
     }
 }
