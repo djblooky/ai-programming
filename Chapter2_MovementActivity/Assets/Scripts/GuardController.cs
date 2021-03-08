@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class GuardController : MonoBehaviour
@@ -39,6 +40,8 @@ public class GuardController : MonoBehaviour
 
     private void Update()
     {
+        chasingSpeed += 0.1f;
+
         if (Input.GetKey("space"))
         {
             StartCoroutine(PlayKnock());
@@ -149,7 +152,19 @@ public class GuardController : MonoBehaviour
             return true;
         }
 
+        if(Vector3.Distance(transform.position, player.transform.position) < 1.5)
+        {
+            Destroy(player.gameObject);
+            StartCoroutine(WaitToReload());
+        }
+
         return false;
+    }
+
+    IEnumerator WaitToReload()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void InvestigatePoint(Vector3 point)
