@@ -1,0 +1,42 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1617602349",
+        "python_version": "3.9.2 (tags/v3.9.2:1a79785, Feb 19 2021, 13:44:55) [MSC v.1928 64 bit (AMD64)]",
+        "command_line_arguments": "D:\\UnityMLAgentsSetupEnv\\Scripts\\mlagents-learn trainer_config.yaml --train --run-id=CarDrive",
+        "mlagents_version": "0.25.0",
+        "mlagents_envs_version": "0.25.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "1.8.1+cpu",
+        "numpy_version": "1.20.2",
+        "end_time_seconds": "1617602410"
+    },
+    "total": 61.078911600000005,
+    "count": 1,
+    "self": 0.005320400000002223,
+    "children": {
+        "run_training.setup": {
+            "total": 0.18903879999999962,
+            "count": 1,
+            "self": 0.18903879999999962
+        },
+        "TrainerController.start_learning": {
+            "total": 60.884552400000004,
+            "count": 1,
+            "self": 0.00012529999999344454,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 60.8840381,
+                    "count": 1,
+                    "self": 60.8840381
+                },
+                "TrainerController._save_models": {
+                    "total": 0.00038900000001262924,
+                    "count": 1,
+                    "self": 0.00038900000001262924
+                }
+            }
+        }
+    }
+}
