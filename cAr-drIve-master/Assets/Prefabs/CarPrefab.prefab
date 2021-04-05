@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7004738600087619264}
     m_Modifications:
+    - target: {fileID: 1498307387813578, guid: c3c0d86c0e789a244b1295717c5bc208, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1945229236291512, guid: c3c0d86c0e789a244b1295717c5bc208, type: 3}
       propertyPath: m_Name
       value: SportCar20_Driver_USA
@@ -177,6 +181,16 @@ PrefabInstance:
     - target: {fileID: 4170099704911036, guid: c3c0d86c0e789a244b1295717c5bc208, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198739050556213870, guid: c3c0d86c0e789a244b1295717c5bc208,
+        type: 3}
+      propertyPath: ShapeModule.m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: a95265d8cdb797e458386a20a9de2a5f, type: 3}
+    - target: {fileID: 199433655515526174, guid: c3c0d86c0e789a244b1295717c5bc208,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 199433655515526174, guid: c3c0d86c0e789a244b1295717c5bc208,
         type: 3}

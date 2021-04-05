@@ -3,5 +3,21 @@
         "stats_format_version": "0.2.0",
         "mlagents_version": "0.25.0",
         "torch_version": "1.8.1+cpu"
+    },
+    "CarDrive": {
+        "checkpoints": [
+            {
+                "steps": 0,
+                "file_path": "results\\CarDrive\\CarDrive\\CarDrive-0.onnx",
+                "reward": null,
+                "creation_time": 1617603521.4964056
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 0,
+            "file_path": "results\\CarDrive\\CarDrive.onnx",
+            "reward": null,
+            "creation_time": 1617603521.4964056
+        }
     }
 }

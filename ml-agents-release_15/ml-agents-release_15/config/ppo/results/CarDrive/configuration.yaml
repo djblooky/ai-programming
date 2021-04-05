@@ -58,9 +58,9 @@ checkpoint_settings:
   run_id: CarDrive
   initialize_from: null
   load_model: false
-  resume: false
+  resume: true
   force: false
-  train_model: true
+  train_model: false
   inference: false
   results_dir: results
 torch_settings:
