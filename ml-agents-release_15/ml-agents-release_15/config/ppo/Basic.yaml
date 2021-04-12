@@ -1,5 +1,5 @@
 behaviors:
-  Basic:
+  CarDrive:
     trainer_type: ppo
     hyperparameters:
       batch_size: 32
@@ -15,12 +15,8 @@ behaviors:
       hidden_units: 20
       num_layers: 1
       vis_encode_type: simple
-    reward_signals:
-      extrinsic:
-        gamma: 0.9
-        strength: 1.0
     keep_checkpoints: 5
-    max_steps: 500000
+    max_steps: 50000000000
     time_horizon: 3
-    summary_freq: 2000
+    summary_freq: 100000
     threaded: true

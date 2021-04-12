@@ -1,0 +1,35 @@
+{
+    "CarDrive": {
+        "checkpoints": [
+            {
+                "steps": 499950,
+                "file_path": "results\\CarDrive4\\CarDrive\\CarDrive-499950.onnx",
+                "reward": 44.807899889846645,
+                "creation_time": 1617605703.7693458
+            },
+            {
+                "steps": 500142,
+                "file_path": "results\\CarDrive4\\CarDrive\\CarDrive-500142.onnx",
+                "reward": 44.807899889846645,
+                "creation_time": 1617605703.8324037
+            },
+            {
+                "steps": 500142,
+                "file_path": "results\\CarDrive4\\CarDrive\\CarDrive-500142.onnx",
+                "reward": null,
+                "creation_time": 1617605789.6257246
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 500142,
+            "file_path": "results\\CarDrive4\\CarDrive.onnx",
+            "reward": null,
+            "creation_time": 1617605789.6257246
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.25.0",
+        "torch_version": "1.8.1+cpu"
+    }
+}

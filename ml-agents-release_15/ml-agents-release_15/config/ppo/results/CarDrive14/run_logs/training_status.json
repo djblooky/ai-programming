@@ -1,0 +1,23 @@
+{
+    "CarDrive": {
+        "checkpoints": [
+            {
+                "steps": 8446,
+                "file_path": "results\\CarDrive14\\CarDrive\\CarDrive-8446.onnx",
+                "reward": -1.0,
+                "creation_time": 1617667204.0167618
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 8446,
+            "file_path": "results\\CarDrive14\\CarDrive.onnx",
+            "reward": -1.0,
+            "creation_time": 1617667204.0167618
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.25.0",
+        "torch_version": "1.8.1+cpu"
+    }
+}
